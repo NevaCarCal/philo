@@ -6,7 +6,7 @@
 #    By: ncarrera <ncarrera@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/07/18 14:25:13 by ncarrera          #+#    #+#              #
-#    Updated: 2025/07/18 14:37:36 by ncarrera         ###   ########.fr        #
+#    Updated: 2025/07/20 22:00:50 by ncarrera         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ CFLAGS = -I./libft -Wall -Wextra -Werror -O0
 LDFLAGS = -L$(LIBFT_DIR) -lft
 
 # Source specification
-SRCS = main.c
+SRCS = ./srcs/main.c
 OBJS = $(SRCS:.c=.o)
 
 # Colours
