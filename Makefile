@@ -6,7 +6,7 @@
 #    By: ncarrera <ncarrera@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/07/18 14:25:13 by ncarrera          #+#    #+#              #
-#    Updated: 2025/07/20 22:00:50 by ncarrera         ###   ########.fr        #
+#    Updated: 2025/07/21 03:55:22 by ncarrera         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ NAME = philo
 CC = cc
 LIBFT_DIR = ./libft
 LIBFT_A = $(LIBFT_DIR)/libft.a
-CFLAGS = -I./libft -Wall -Wextra -Werror -O0
+CFLAGS = -I./libft #-Wall -Wextra -Werror -O0
 
 # Linker flags
 LDFLAGS = -L$(LIBFT_DIR) -lft

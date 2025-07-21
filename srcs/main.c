@@ -6,13 +6,15 @@
 /*   By: ncarrera <ncarrera@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 14:23:03 by ncarrera          #+#    #+#             */
-/*   Updated: 2025/07/20 23:49:25 by ncarrera         ###   ########.fr       */
+/*   Updated: 2025/07/21 03:53:28 by ncarrera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	main()
+int	main(int argc, char **argv)
 {
+	int		num;
+	char	val;
 	ft_printf("Hi\n");
 }
