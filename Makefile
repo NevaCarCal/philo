@@ -6,7 +6,7 @@
 #    By: ncarrera <ncarrera@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/07/18 14:25:13 by ncarrera          #+#    #+#              #
-#    Updated: 2025/07/21 03:55:22 by ncarrera         ###   ########.fr        #
+#    Updated: 2025/07/21 18:29:34 by ncarrera         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ CFLAGS = -I./libft #-Wall -Wextra -Werror -O0
 LDFLAGS = -L$(LIBFT_DIR) -lft
 
 # Source specification
-SRCS = ./srcs/main.c
+SRCS = ./srcs/main.c ./srcs/philos.c
 OBJS = $(SRCS:.c=.o)
 
 # Colours
@@ -32,27 +32,30 @@ Red=\033[5;31m
 
 # Make rules
 all: $(LIBFT_A) $(NAME)
+	@printf "\n"
 
 $(NAME): $(OBJS)
 	@$(CC) $(OBJS) $(LDFLAGS) -o $(NAME)
 
 $(LIBFT_A):
-	@make -C $(LIBFT_DIR)
+	@make -s -C $(LIBFT_DIR)
 
 %.o: %.c
-	@printf "$(Cyan)\rCompiling: $(Purple)$(notdir $<)$(NC)"
+	@printf "$(Cyan)\rCompiling: $(Purple)$(notdir $<)$(NC)\r"
 	@$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	rm -f $(OBJS)
-	@make clean -C $(LIBFT_DIR)
+	@printf "$(Red)\rDeleting: $(Purple)philo objs$(NC)\n"
+	@rm -f $(OBJS)
+	@make clean -s -C $(LIBFT_DIR)
 fclean: clean
-	rm -f $(NAME)
-	@make fclean -C $(LIBFT_DIR)
+	@printf "$(Red)\rDeleting: $(Purple)philo$(NC)\n"
+	@rm -f $(NAME)
+	@make fclean -s -C $(LIBFT_DIR)
 re: fclean all
 cleanbuild:
-	@$(MAKE) fclean
-	@$(MAKE) all
-	@$(MAKE) clean
+	@$(MAKE) fclean -s
+	@$(MAKE) all -s
+	@$(MAKE) clean -s
 
 .PHONY: all clean fclean re cleanbuild
