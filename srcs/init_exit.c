@@ -1,29 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.h                                            :+:      :+:    :+:   */
+/*   init_exit.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ncarrera <ncarrera@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/21 19:12:18 by ncarrera          #+#    #+#             */
-/*   Updated: 2025/07/22 00:03:38 by ncarrera         ###   ########.fr       */
+/*   Created: 2025/07/21 23:53:13 by ncarrera          #+#    #+#             */
+/*   Updated: 2025/07/22 00:06:18 by ncarrera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHILO_H
-# define PHILO_H
-# include <pthread.h>
-# include <stdio.h>
-# include <limits.h>
+#include "philo.h"
 
-typedef struct s_philos
+int	init_checks(int argc, char **argv)
 {
-	void			*philo;
-	void			*fork;
-	struct s_philos	*right;
-	struct s_philos	*left;
-}				t_philos;
-int	ft_isnumstr(char *str);
-int	ft_safe_atoi(const char *nptr, int *status);
+	int	i;
 
-#endif
+	i = 1;
+	if (argc != 5 || argc != 6)
+	{
+		printf("Please input between 4 and 5 commands.\n");
+		return (0);
+	}
+	while (argv[i])
+	{
+		if (!ft_isnumstr(argv[i]))
+		{
+			printf("One or more invalid arguments. \
+				All arguments must be numerical.\n");
+			return (0);
+		}
+	}
+}
