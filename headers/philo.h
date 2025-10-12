@@ -6,7 +6,7 @@
 /*   By: ncarrera <ncarrera@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/21 19:12:18 by ncarrera          #+#    #+#             */
-/*   Updated: 2025/10/12 15:22:56 by ncarrera         ###   ########.fr       */
+/*   Updated: 2025/10/12 15:56:12 by ncarrera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ long long	e_time(long long sim_time);
 long long	get_time(void);
 void		lock_forks(t_philos *p);
 void		unlock_forks(t_philos *philo);
+void		print_queue(t_philos *philo, const char *message);
 void		precise_usleep(long long milliseconds_to_sleep);
 void		philo_cleanup(t_data_philos *data);
 

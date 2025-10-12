@@ -6,7 +6,7 @@
 /*   By: ncarrera <ncarrera@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 14:23:03 by ncarrera          #+#    #+#             */
-/*   Updated: 2025/10/12 15:27:03 by ncarrera         ###   ########.fr       */
+/*   Updated: 2025/10/12 15:39:20 by ncarrera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ static int	sim_launch(t_data_philos *data)
 	data->sim_time = get_time();
 	while (i < data->phil_num)
 	{
+		data->philos[i].last_eat_time = data->sim_time;
 		if (pthread_create(&data->philos[i].thread, NULL,
 				&philo_routine, &data->philos[i]) != 0)
 		{

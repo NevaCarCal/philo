@@ -6,7 +6,7 @@
 #    By: ncarrera <ncarrera@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/07/18 14:25:13 by ncarrera          #+#    #+#              #
-#    Updated: 2025/10/12 14:58:18 by ncarrera         ###   ########.fr        #
+#    Updated: 2025/10/12 15:51:01 by ncarrera         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,8 @@ CFLAGS = -I./headers -g#-Wall -Wextra -Werror -O0
 
 # Source specification
 SRCS = ./srcs/main.c ./srcs/philos.c ./srcs/init_exit.c ./srcs/parsing.c \
-	   ./srcs/lock_handlers.c ./srcs/death_meal_watcher.c
+	   ./srcs/lock_handlers.c ./srcs/death_meal_watcher.c \
+	   ./srcs/time_management.c
 OBJS = $(SRCS:.c=.o)
 
 # Colours

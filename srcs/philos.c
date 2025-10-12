@@ -6,7 +6,7 @@
 /*   By: ncarrera <ncarrera@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/21 19:12:34 by ncarrera          #+#    #+#             */
-/*   Updated: 2025/10/12 14:56:18 by ncarrera         ###   ########.fr       */
+/*   Updated: 2025/10/12 16:19:35 by ncarrera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,18 +32,19 @@ void	*philo_routine(void *arg)
 		lock_forks(p);
 		pthread_mutex_lock(&p->data->data_lock);
 		p->last_eat_time = get_time();
-		printf("%lld %d is eating\n", e_time(p->data->sim_time), p->id);
+		if (!p->data->death_signal)
+			print_queue(p, "is eating\n");
 		p->times_eaten++;
 		pthread_mutex_unlock(&p->data->data_lock);
 		precise_usleep(p->data->eat_time);
 		unlock_forks(p);
 		if (is_sim_done(p->data))
 			break ;
-		printf("%lld %d is sleeping\n", e_time(p->data->sim_time), p->id);
+		print_queue(p, "is sleeping\n");
 		precise_usleep(p->data->sleep_time);
 		if (is_sim_done(p->data))
 			break ;
-		printf("%lld %d is thinking\n", e_time(p->data->sim_time), p->id);
+		print_queue(p, "is thinking\n");
 	}
 	return (NULL);
 }
