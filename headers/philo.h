@@ -6,7 +6,7 @@
 /*   By: ncarrera <ncarrera@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/21 19:12:18 by ncarrera          #+#    #+#             */
-/*   Updated: 2025/10/12 16:31:56 by ncarrera         ###   ########.fr       */
+/*   Updated: 2025/10/13 11:31:21 by ncarrera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ typedef struct s_philos
 typedef struct s_data_philos
 {
 	pthread_mutex_t	data_lock;
+	pthread_mutex_t	queue_lock;
 	pthread_mutex_t	*forks;
 	long long		sim_time;
 	t_philos		*philos;
@@ -44,8 +45,8 @@ typedef struct s_data_philos
 	int				die_time;
 	int				eat_time;
 }				t_data_philos;
-long long	get_time(void);
 void		ft_printerr(const char *msg);
+void		print_queue(t_philos *philo, const char *msg);
 int			ft_ispnumstr(char *str);
 int			ft_atoi(const char *nptr);
 int			init_checks(t_data_philos *data, int argc, char **argv);

@@ -6,7 +6,7 @@
 #    By: ncarrera <ncarrera@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/07/18 14:25:13 by ncarrera          #+#    #+#              #
-#    Updated: 2025/10/12 15:51:01 by ncarrera         ###   ########.fr        #
+#    Updated: 2025/10/13 11:33:44 by ncarrera         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,7 +46,7 @@ fclean: clean
 	@printf "$(Red)\rDeleting: $(Purple)philo$(NC)\n"
 	@rm -f $(NAME)
 re: fclean all
-cleanbuild:
+reclean:
 	@$(MAKE) fclean -s
 	@$(MAKE) all -s
 	@$(MAKE) clean -s

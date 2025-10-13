@@ -6,7 +6,7 @@
 /*   By: ncarrera <ncarrera@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/21 23:53:13 by ncarrera          #+#    #+#             */
-/*   Updated: 2025/10/12 14:57:27 by ncarrera         ###   ########.fr       */
+/*   Updated: 2025/10/13 11:20:21 by ncarrera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,12 @@ int	init_data(t_data_philos *data)
 	}
 	if (pthread_mutex_init(&data->data_lock, NULL) != 0)
 	{
+		free(data->philos);
+		return (0);
+	}
+	if (pthread_mutex_init(&data->queue_lock, NULL) != 0)
+	{
+		pthread_mutex_destroy(&data->data_lock);
 		free(data->philos);
 		return (0);
 	}
