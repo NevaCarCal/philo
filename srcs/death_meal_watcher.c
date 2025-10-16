@@ -6,7 +6,7 @@
 /*   By: ncarrera <ncarrera@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/12 14:57:02 by ncarrera          #+#    #+#             */
-/*   Updated: 2025/10/13 11:27:22 by ncarrera         ###   ########.fr       */
+/*   Updated: 2025/10/16 22:43:28 by ncarrera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,68 +14,70 @@
 
 static int	meals_complete(t_data_philos *data)
 {
-	int	status;
-	int	i;
-
 	if (data->max_eat_num == -1)
 		return (0);
-	i = 0;
-	status = 1;
-	pthread_mutex_lock(&data->data_lock);
-	while (i < data->phil_num)
+	while (data->fed_phils < data->phil_num)
 	{
-		if (data->philos[i].times_eaten < data->max_eat_num)
-		{
-			status = 0;
-			break ;
-		}
-		i++;
+		if (data->philos[data->fed_phils].times_eaten < data->max_eat_num)
+			return (0);
+		data->fed_phils++;
 	}
-	pthread_mutex_unlock(&data->data_lock);
-	return (status);
+	data->fed_phils = 0;
+	return (1);
 }
 
 static int	philo_dead(t_philos *philo)
 {
 	long long	time_since_eating;
 
-	pthread_mutex_lock(&philo->data->data_lock);
 	time_since_eating = e_time(philo->last_eat_time);
 	if (time_since_eating > philo->data->die_time)
 	{
 		philo->data->death_signal = 1;
-		pthread_mutex_unlock(&philo->data->data_lock);
 		pthread_mutex_lock(&philo->data->queue_lock);
 		printf("%lld %d died\n", e_time(philo->data->sim_time), philo->id);
 		pthread_mutex_unlock(&philo->data->queue_lock);
 		return (1);
 	}
-	pthread_mutex_unlock(&philo->data->data_lock);
+	return (0);
+}
+
+static int	philo_checker(t_data_philos *data)
+{
+	int	i;
+
+	i = 0;
+	while (i < data->phil_num)
+	{
+		pthread_mutex_lock(&data->data_lock);
+		if (philo_dead(&data->philos[i]))
+		{
+			pthread_mutex_unlock(&data->data_lock);
+			return (1);
+		}
+		pthread_mutex_unlock(&data->data_lock);
+		i++;
+	}
 	return (0);
 }
 
 void	*watcher_routine(void	*arg)
 {
 	t_data_philos	*data;
-	int				i;
 
 	data = (t_data_philos *)arg;
 	while (1)
 	{
-		i = 0;
+		if (philo_checker(data))
+			return (NULL);
+		pthread_mutex_lock(&data->data_lock);
 		if (meals_complete(data))
 		{
-			pthread_mutex_lock(&data->data_lock);
 			data->death_signal = 1;
 			pthread_mutex_unlock(&data->data_lock);
-			break ;
+			return (NULL);
 		}
-		while (i < data->phil_num)
-		{
-			if (philo_dead(&data->philos[i]))
-				return (NULL);
-			i++;
-		}
+		pthread_mutex_unlock(&data->data_lock);
 	}
 	return (NULL);
 }

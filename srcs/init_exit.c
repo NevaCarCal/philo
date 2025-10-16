@@ -6,7 +6,7 @@
 /*   By: ncarrera <ncarrera@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/21 23:53:13 by ncarrera          #+#    #+#             */
-/*   Updated: 2025/10/13 11:20:21 by ncarrera         ###   ########.fr       */
+/*   Updated: 2025/10/13 14:42:45 by ncarrera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,15 @@ static void	init_phil_data(t_data_philos *data, int argc, char **argv)
 	data->eat_time = ft_atoi(argv[3]);
 	data->sleep_time = ft_atoi(argv[4]);
 	if (argc == 6)
+	{
 		data->max_eat_num = ft_atoi(argv[5]);
+		data->fed_phils = 0;
+	}
 	else
+	{
 		data->max_eat_num = -1;
+		data->fed_phils = -1;
+	}
 }
 
 static int	init_forks(t_data_philos *data)

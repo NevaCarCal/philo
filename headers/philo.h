@@ -6,7 +6,7 @@
 /*   By: ncarrera <ncarrera@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/21 19:12:18 by ncarrera          #+#    #+#             */
-/*   Updated: 2025/10/13 11:31:21 by ncarrera         ###   ########.fr       */
+/*   Updated: 2025/10/13 14:39:51 by ncarrera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ typedef struct s_data_philos
 	int				death_signal;
 	int				max_eat_num;
 	int				phil_num;
+	int				fed_phils;
 	int				sleep_time;
 	int				die_time;
 	int				eat_time;
