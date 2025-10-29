@@ -6,14 +6,14 @@
 #    By: ncarrera <ncarrera@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/07/18 14:25:13 by ncarrera          #+#    #+#              #
-#    Updated: 2025/10/16 22:46:12 by ncarrera         ###   ########.fr        #
+#    Updated: 2025/10/29 14:38:52 by ncarrera         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # Compile / libft names & settings
 NAME = philo
 CC = cc
-CFLAGS = -I./headers -g#-Wall -Wextra -Werror -O0
+CFLAGS = -I./headers -Wall -Wextra -Werror -Og
 
 # Source specification
 SRCS = ./srcs/main.c ./srcs/philos.c ./srcs/init_exit.c ./srcs/parsing.c \
@@ -30,14 +30,12 @@ LC=\033[2K
 
 # Make rules
 all: $(NAME)
-	@printf "\n"
 
 $(NAME): $(OBJS)
 	@$(CC) $(OBJS) -o $(NAME)
 
 %.o: %.c
-	@printf "$(LC)\r"
-	@printf "$(Cyan)\rCompiling: $(Purple)$(notdir $<)$(NC)"
+	@printf "$(Cyan)\rCompiling: $(Purple)$(notdir $<)$(NC)\n"
 	@$(CC) $(CFLAGS) -c $< -o $@
 clean:
 	@printf "$(Red)\rDeleting: $(Purple)philo objs$(NC)\n"
@@ -46,6 +44,7 @@ fclean: clean
 	@printf "$(Red)\rDeleting: $(Purple)philo$(NC)\n"
 	@rm -f $(NAME)
 re: fclean all
+	@printf "\n"
 reclean:
 	@$(MAKE) fclean -s
 	@$(MAKE) all -s

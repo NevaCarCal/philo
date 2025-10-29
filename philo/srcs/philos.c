@@ -6,7 +6,7 @@
 /*   By: ncarrera <ncarrera@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/21 19:12:34 by ncarrera          #+#    #+#             */
-/*   Updated: 2025/10/13 15:26:57 by ncarrera         ###   ########.fr       */
+/*   Updated: 2025/10/29 14:31:22 by ncarrera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,11 @@ void	*philo_routine(void *arg)
 	while (!is_sim_done(p->data))
 	{
 		lock_forks(p);
+		print_queue(p, "is eating");
 		pthread_mutex_lock(&p->data->data_lock);
 		p->last_eat_time = get_time();
 		p->times_eaten++;
 		pthread_mutex_unlock(&p->data->data_lock);
-		print_queue(p, "is eating");
 		precise_usleep(p->data->eat_time);
 		unlock_forks(p);
 		print_queue(p, "is sleeping");
