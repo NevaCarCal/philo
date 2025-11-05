@@ -6,7 +6,7 @@
 /*   By: ncarrera <ncarrera@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/08 21:44:53 by ncarrera          #+#    #+#             */
-/*   Updated: 2025/10/13 13:54:54 by ncarrera         ###   ########.fr       */
+/*   Updated: 2025/11/05 13:11:05 by ncarrera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,16 @@ void	lock_forks(t_philos *p)
 {
 	if (p->id % 2 == 0)
 	{
-		pthread_mutex_lock(p->left_fork);
-		print_queue(p, "has taken a fork");
 		pthread_mutex_lock(p->right_fork);
+		print_queue(p, "has taken a fork");
+		pthread_mutex_lock(p->left_fork);
 		print_queue(p, "has taken a fork");
 	}
 	else
 	{
-		pthread_mutex_lock(p->right_fork);
-		print_queue(p, "has taken a fork");
 		pthread_mutex_lock(p->left_fork);
+		print_queue(p, "has taken a fork");
+		pthread_mutex_lock(p->right_fork);
 		print_queue(p, "has taken a fork");
 	}
 }

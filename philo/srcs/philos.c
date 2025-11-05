@@ -6,7 +6,7 @@
 /*   By: ncarrera <ncarrera@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/21 19:12:34 by ncarrera          #+#    #+#             */
-/*   Updated: 2025/10/29 14:31:22 by ncarrera         ###   ########.fr       */
+/*   Updated: 2025/11/05 13:25:11 by ncarrera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,14 @@ void	philo_cleanup(t_data_philos *data)
 
 void	print_queue(t_philos *philo, const char *msg)
 {
+	pthread_mutex_lock(&philo->data->data_lock);
+	if (philo->data->death_signal == 1)
+	{
+		pthread_mutex_unlock(&philo->data->data_lock);
+		return ;
+	}
 	pthread_mutex_lock(&philo->data->queue_lock);
-	if (!is_sim_done(philo->data))
-		printf("%lld %d %s\n", e_time(philo->data->sim_time), philo->id, msg);
+	printf("%lld %d %s\n", e_time(philo->data->sim_time), philo->id, msg);
 	pthread_mutex_unlock(&philo->data->queue_lock);
+	pthread_mutex_unlock(&philo->data->data_lock);
 }

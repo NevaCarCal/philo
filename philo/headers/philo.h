@@ -6,7 +6,7 @@
 /*   By: ncarrera <ncarrera@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/21 19:12:18 by ncarrera          #+#    #+#             */
-/*   Updated: 2025/10/13 14:39:51 by ncarrera         ###   ########.fr       */
+/*   Updated: 2025/11/05 14:22:12 by ncarrera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,9 @@ typedef struct s_data_philos
 void		ft_printerr(const char *msg);
 void		print_queue(t_philos *philo, const char *msg);
 int			ft_ispnumstr(char *str);
+int			ft_safe_atoi(const char *nptr, int *status);
 int			ft_atoi(const char *nptr);
+int			ft_isspace(int c);
 int			init_checks(t_data_philos *data, int argc, char **argv);
 int			init_data(t_data_philos *data);
 void		*philo_routine(void *arg);

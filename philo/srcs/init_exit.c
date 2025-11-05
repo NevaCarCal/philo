@@ -6,7 +6,7 @@
 /*   By: ncarrera <ncarrera@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/21 23:53:13 by ncarrera          #+#    #+#             */
-/*   Updated: 2025/10/13 14:42:45 by ncarrera         ###   ########.fr       */
+/*   Updated: 2025/11/05 14:21:00 by ncarrera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,18 +72,26 @@ static void	init_philos(t_data_philos *data)
 int	init_checks(t_data_philos *data, int argc, char **argv)
 {
 	int	i;
+	int	status;
 
 	i = 1;
+	status = 0;
 	if (argc != 5 && argc != 6)
 	{
-		printf("Please input between 4 and 5 arguments.\n");
+		printf("invalid\n");
 		return (0);
 	}
 	while (argv[i])
 	{
 		if (!ft_ispnumstr(argv[i]))
 		{
-			printf("All arguments must be numerical and positive.\n");
+			printf("invalid\n");
+			return (0);
+		}
+		ft_safe_atoi(argv[i], &status);
+		if (status != 0)
+		{
+			printf("invalid\n");
 			return (0);
 		}
 		i++;

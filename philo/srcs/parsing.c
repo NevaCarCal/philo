@@ -6,7 +6,7 @@
 /*   By: ncarrera <ncarrera@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/21 23:59:56 by ncarrera          #+#    #+#             */
-/*   Updated: 2025/10/08 19:36:53 by ncarrera         ###   ########.fr       */
+/*   Updated: 2025/11/05 14:22:34 by ncarrera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static int	ft_isdigit(int c)
 	return (0);
 }
 
-static int	ft_isspace(int c)
+int	ft_isspace(int c)
 {
 	if (c == ' ' || c == '\f' || c == '\n'
 		|| c == '\r' || c == '\t' || c == '\v')
@@ -61,15 +61,4 @@ int	ft_atoi(const char *nptr)
 	while (nptr[ctr] >= '0' && nptr[ctr] <= '9')
 		result = (result * 10) + (nptr[ctr++] - '0');
 	return ((int)(result));
-}
-
-void	ft_printerr(const char *msg)
-{
-	int	i;
-
-	i = 0;
-	while (msg[i])
-		i++;
-	if (i != 0)
-		write(2, msg, i);
 }
