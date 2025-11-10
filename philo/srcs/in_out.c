@@ -6,7 +6,7 @@
 /*   By: ncarrera <ncarrera@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 13:38:06 by ncarrera          #+#    #+#             */
-/*   Updated: 2025/11/05 13:39:24 by ncarrera         ###   ########.fr       */
+/*   Updated: 2025/11/10 20:00:00 by ncarrera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,10 @@ void	ft_printerr(const char *msg)
 	while (msg[i])
 		i++;
 	if (i != 0)
-		write(2, msg, i);
+	{
+		if (write(2, msg, i) == -1)
+			printf("Error writing to stderr.");
+	}
 }
 
 static int	iof_check(long int num, int to_add, int sign)
