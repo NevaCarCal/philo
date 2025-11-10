@@ -6,7 +6,7 @@
 /*   By: ncarrera <ncarrera@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/21 23:53:13 by ncarrera          #+#    #+#             */
-/*   Updated: 2025/11/05 14:21:00 by ncarrera         ###   ########.fr       */
+/*   Updated: 2025/11/10 12:19:28 by ncarrera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,22 +76,17 @@ int	init_checks(t_data_philos *data, int argc, char **argv)
 
 	i = 1;
 	status = 0;
-	if (argc != 5 && argc != 6)
-	{
-		printf("invalid\n");
-		return (0);
-	}
 	while (argv[i])
 	{
 		if (!ft_ispnumstr(argv[i]))
 		{
-			printf("invalid\n");
+			printf("Invalid characters in arguments.\n");
 			return (0);
 		}
 		ft_safe_atoi(argv[i], &status);
 		if (status != 0)
 		{
-			printf("invalid\n");
+			printf("Invalid numbers in arguments.\n");
 			return (0);
 		}
 		i++;

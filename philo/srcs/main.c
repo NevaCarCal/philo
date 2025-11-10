@@ -6,7 +6,7 @@
 /*   By: ncarrera <ncarrera@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 14:23:03 by ncarrera          #+#    #+#             */
-/*   Updated: 2025/10/13 14:31:30 by ncarrera         ###   ########.fr       */
+/*   Updated: 2025/11/10 12:16:48 by ncarrera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,11 @@ int	main(int argc, char **argv)
 {
 	t_data_philos	data;
 
+	if (argc != 5 && argc != 6)
+	{
+		ft_printerr("Invalid number of arguments.\n");
+		return (EXIT_FAILURE);
+	}
 	if (!init_checks(&data, argc, argv))
 		return (EXIT_FAILURE);
 	if (!init_data(&data))
