@@ -6,13 +6,13 @@
 /*   By: ncarrera <ncarrera@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/21 19:12:34 by ncarrera          #+#    #+#             */
-/*   Updated: 2025/11/11 14:15:02 by ncarrera         ###   ########.fr       */
+/*   Updated: 2025/11/11 21:03:59 by ncarrera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-static int	is_sim_done(t_data_philos *data)
+int	is_sim_done(t_data_philos *data)
 {
 	int	check;
 
@@ -41,12 +41,11 @@ void	*philo_routine(void *arg)
 		p->last_eat_time = get_time();
 		p->times_eaten++;
 		pthread_mutex_unlock(&p->data->data_lock);
-		precise_usleep(p->data->eat_time);
+		philo_sleep(p->data->eat_time, p->data);
 		unlock_forks(p);
 		print_queue(p, "is sleeping");
-		precise_usleep(p->data->sleep_time);
+		philo_sleep(p->data->sleep_time, p->data);
 		print_queue(p, "is thinking");
-		usleep(200);
 	}
 	return (NULL);
 }

@@ -6,7 +6,7 @@
 /*   By: ncarrera <ncarrera@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/21 23:53:13 by ncarrera          #+#    #+#             */
-/*   Updated: 2025/11/10 12:19:28 by ncarrera         ###   ########.fr       */
+/*   Updated: 2025/11/11 20:38:02 by ncarrera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,10 @@ static void	init_phil_data(t_data_philos *data, int argc, char **argv)
 	if (argc == 6)
 	{
 		data->max_eat_num = ft_atoi(argv[5]);
-		data->fed_phils = 0;
 	}
 	else
 	{
 		data->max_eat_num = -1;
-		data->fed_phils = -1;
 	}
 }
 
@@ -78,12 +76,11 @@ int	init_checks(t_data_philos *data, int argc, char **argv)
 	status = 0;
 	while (argv[i])
 	{
-		if (!ft_ispnumstr(argv[i]))
+		if (!ft_ispnumstr(argv[i]) || ft_safe_atoi(argv[i], &status) == 0)
 		{
-			printf("Invalid characters in arguments.\n");
+			printf("Invalid arguments.\n");
 			return (0);
 		}
-		ft_safe_atoi(argv[i], &status);
 		if (status != 0)
 		{
 			printf("Invalid numbers in arguments.\n");
