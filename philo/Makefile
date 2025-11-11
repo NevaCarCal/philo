@@ -6,7 +6,7 @@
 #    By: ncarrera <ncarrera@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/07/18 14:25:13 by ncarrera          #+#    #+#              #
-#    Updated: 2025/11/10 19:55:22 by ncarrera         ###   ########.fr        #
+#    Updated: 2025/11/11 14:08:41 by ncarrera         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,7 @@ LC=\033[2K
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	@$(CC) $(OBJS) -o $(NAME)
+	@$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
 
 %.o: %.c
 	@printf "$(Cyan)\rCompiling: $(Purple)$(notdir $<)$(NC)\n"

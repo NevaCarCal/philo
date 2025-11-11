@@ -6,7 +6,7 @@
 /*   By: ncarrera <ncarrera@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/12 15:50:06 by ncarrera          #+#    #+#             */
-/*   Updated: 2025/11/05 13:09:36 by ncarrera         ###   ########.fr       */
+/*   Updated: 2025/11/11 14:16:29 by ncarrera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,5 @@ void	precise_usleep(long long milliseconds_to_sleep)
 	start_time = get_time();
 	end_time = start_time + milliseconds_to_sleep;
 	while (get_time() < end_time)
-		usleep(10);
+		usleep(500);
 }

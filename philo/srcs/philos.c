@@ -6,7 +6,7 @@
 /*   By: ncarrera <ncarrera@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/21 19:12:34 by ncarrera          #+#    #+#             */
-/*   Updated: 2025/11/05 13:25:11 by ncarrera         ###   ########.fr       */
+/*   Updated: 2025/11/11 14:15:02 by ncarrera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ void	*philo_routine(void *arg)
 		print_queue(p, "is sleeping");
 		precise_usleep(p->data->sleep_time);
 		print_queue(p, "is thinking");
+		usleep(200);
 	}
 	return (NULL);
 }
