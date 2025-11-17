@@ -6,7 +6,7 @@
 /*   By: ncarrera <ncarrera@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/21 23:53:13 by ncarrera          #+#    #+#             */
-/*   Updated: 2025/11/11 20:38:02 by ncarrera         ###   ########.fr       */
+/*   Updated: 2025/11/17 12:41:08 by ncarrera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,13 +51,15 @@ static int	init_forks(t_data_philos *data)
 	return (1);
 }
 
-static void	init_philos(t_data_philos *data)
+static int	init_philos(t_data_philos *data)
 {
 	int	i;
 
 	i = 0;
 	while (i < data->phil_num)
 	{
+		if (pthread_mutex_init(&data->philos[i].meal_lock, NULL) != 0)
+			return (0);
 		data->philos[i].id = i + 1;
 		data->philos[i].data = data;
 		data->philos[i].times_eaten = 0;
@@ -65,6 +67,7 @@ static void	init_philos(t_data_philos *data)
 		data->philos[i].right_fork = &data->forks[(i + 1) % data->phil_num];
 		i++;
 	}
+	return (1);
 }
 
 int	init_checks(t_data_philos *data, int argc, char **argv)
@@ -114,6 +117,7 @@ int	init_data(t_data_philos *data)
 	data->death_signal = 0;
 	if (!init_forks(data))
 		return (0);
-	init_philos(data);
+	if (!init_philos(data))
+		return (0);
 	return (1);
 }

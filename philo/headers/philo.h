@@ -6,7 +6,7 @@
 /*   By: ncarrera <ncarrera@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/21 19:12:18 by ncarrera          #+#    #+#             */
-/*   Updated: 2025/11/11 21:05:18 by ncarrera         ###   ########.fr       */
+/*   Updated: 2025/11/17 12:35:05 by ncarrera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ typedef struct s_philos
 	struct s_data_philos	*data;
 	pthread_mutex_t			*left_fork;
 	pthread_mutex_t			*right_fork;
+	pthread_mutex_t			meal_lock;
 	pthread_t				thread;
 	long long				last_eat_time;
 	int						times_eaten;

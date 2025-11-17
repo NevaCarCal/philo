@@ -6,11 +6,17 @@
 /*   By: ncarrera <ncarrera@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/21 19:12:34 by ncarrera          #+#    #+#             */
-/*   Updated: 2025/11/11 21:03:59 by ncarrera         ###   ########.fr       */
+/*   Updated: 2025/11/17 13:21:50 by ncarrera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+void	lonely_philo(t_philos *p)
+{
+	print_queue(p, "has taken a fork");
+	precise_usleep(p->data->die_time);
+}
 
 int	is_sim_done(t_data_philos *data)
 {
@@ -29,18 +35,19 @@ void	*philo_routine(void *arg)
 	p = (t_philos *)arg;
 	if (p->data->phil_num == 1)
 	{
-		print_queue(p, "has taken a fork");
-		precise_usleep(p->data->die_time);
+		lonely_philo(p);
 		return (NULL);
 	}
+	if (p->id % 2 == 0)
+		precise_usleep(1);
 	while (!is_sim_done(p->data))
 	{
 		lock_forks(p);
 		print_queue(p, "is eating");
-		pthread_mutex_lock(&p->data->data_lock);
+		pthread_mutex_lock(&p->meal_lock);
 		p->last_eat_time = get_time();
 		p->times_eaten++;
-		pthread_mutex_unlock(&p->data->data_lock);
+		pthread_mutex_unlock(&p->meal_lock);
 		philo_sleep(p->data->eat_time, p->data);
 		unlock_forks(p);
 		print_queue(p, "is sleeping");
@@ -57,6 +64,7 @@ void	philo_cleanup(t_data_philos *data)
 	i = 0;
 	while (i < data->phil_num)
 	{
+		pthread_mutex_destroy(&data->philos[i].meal_lock);
 		pthread_mutex_destroy(&data->forks[i]);
 		i++;
 	}

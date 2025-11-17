@@ -6,14 +6,14 @@
 #    By: ncarrera <ncarrera@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/07/18 14:25:13 by ncarrera          #+#    #+#              #
-#    Updated: 2025/11/11 14:08:41 by ncarrera         ###   ########.fr        #
+#    Updated: 2025/11/17 13:28:12 by ncarrera         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # Compile / libft names & settings
 NAME = philo
 CC = cc
-CFLAGS = -I./headers -Wall -Wextra -Werror -Og
+CFLAGS = -I./headers -Wall -Wextra -Werror #-fsanitize=address -Og 
 
 # Source specification
 SRCS = ./srcs/main.c ./srcs/philos.c ./srcs/init_exit.c ./srcs/parsing.c \
