@@ -6,7 +6,7 @@
 /*   By: ncarrera <ncarrera@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/21 19:12:18 by ncarrera          #+#    #+#             */
-/*   Updated: 2025/11/17 12:35:05 by ncarrera         ###   ########.fr       */
+/*   Updated: 2025/11/20 21:16:47 by ncarrera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ typedef struct s_data_philos
 	pthread_mutex_t	queue_lock;
 	pthread_mutex_t	*forks;
 	long long		sim_time;
+	long long		start_time;
 	t_philos		*philos;
 	int				death_signal;
 	int				max_eat_num;
@@ -54,6 +55,7 @@ int			ft_atoi(const char *nptr);
 int			ft_isspace(int c);
 int			init_checks(t_data_philos *data, int argc, char **argv);
 int			init_data(t_data_philos *data);
+void		wait_start(long long start_time);
 void		*philo_routine(void *arg);
 void		*watcher_routine(void	*arg);
 int			is_sim_done(t_data_philos *data);

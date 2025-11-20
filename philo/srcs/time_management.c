@@ -6,7 +6,7 @@
 /*   By: ncarrera <ncarrera@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/12 15:50:06 by ncarrera          #+#    #+#             */
-/*   Updated: 2025/11/17 13:49:54 by ncarrera         ###   ########.fr       */
+/*   Updated: 2025/11/20 21:21:10 by ncarrera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,4 +49,13 @@ void	philo_sleep(long long ms_to_sleep, t_data_philos *data)
 		if (is_sim_done(data))
 			return ;
 	}
+}
+
+void	wait_start(long long start_time)
+{
+	long long	delta;
+
+	delta = start_time - get_time();
+	if (delta > 0)
+		usleep(delta * 1000);
 }

@@ -6,16 +6,19 @@
 /*   By: ncarrera <ncarrera@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/21 19:12:34 by ncarrera          #+#    #+#             */
-/*   Updated: 2025/11/17 13:21:50 by ncarrera         ###   ########.fr       */
+/*   Updated: 2025/11/20 21:16:08 by ncarrera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	lonely_philo(t_philos *p)
+int	lonely_philo(t_philos *p)
 {
+	if (p->data->phil_num != 1)
+		return (0);
 	print_queue(p, "has taken a fork");
 	precise_usleep(p->data->die_time);
+	return (1);
 }
 
 int	is_sim_done(t_data_philos *data)
@@ -33,11 +36,9 @@ void	*philo_routine(void *arg)
 	t_philos	*p;
 
 	p = (t_philos *)arg;
-	if (p->data->phil_num == 1)
-	{
-		lonely_philo(p);
+	wait_start(p->data->start_time);
+	if (lonely_philo(p))
 		return (NULL);
-	}
 	if (p->id % 2 == 0)
 		precise_usleep(1);
 	while (!is_sim_done(p->data))

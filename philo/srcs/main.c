@@ -6,7 +6,7 @@
 /*   By: ncarrera <ncarrera@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 14:23:03 by ncarrera          #+#    #+#             */
-/*   Updated: 2025/11/11 21:03:47 by ncarrera         ###   ########.fr       */
+/*   Updated: 2025/11/20 21:11:57 by ncarrera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ static int	sim_launch(t_data_philos *data)
 
 	i = 0;
 	data->sim_time = get_time();
+	data->start_time = data->sim_time + (data->phil_num * 2);
+	data->sim_time = data->start_time;
 	while (i < data->phil_num)
 	{
 		data->philos[i].last_eat_time = data->sim_time;

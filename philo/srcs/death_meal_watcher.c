@@ -6,7 +6,7 @@
 /*   By: ncarrera <ncarrera@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/12 14:57:02 by ncarrera          #+#    #+#             */
-/*   Updated: 2025/11/17 13:37:00 by ncarrera         ###   ########.fr       */
+/*   Updated: 2025/11/20 22:11:07 by ncarrera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ void	*watcher_routine(void	*arg)
 	t_data_philos	*data;
 
 	data = (t_data_philos *)arg;
+	wait_start(data->start_time);
 	while (1)
 	{
 		if (philo_checker(data))
@@ -83,7 +84,7 @@ void	*watcher_routine(void	*arg)
 			pthread_mutex_unlock(&data->data_lock);
 			return (NULL);
 		}
-		usleep(10);
+		usleep(100);
 	}
 	return (NULL);
 }
