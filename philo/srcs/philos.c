@@ -6,7 +6,7 @@
 /*   By: ncarrera <ncarrera@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/21 19:12:34 by ncarrera          #+#    #+#             */
-/*   Updated: 2025/11/20 21:16:08 by ncarrera         ###   ########.fr       */
+/*   Updated: 2025/11/21 13:38:11 by ncarrera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,10 @@ int	lonely_philo(t_philos *p)
 {
 	if (p->data->phil_num != 1)
 		return (0);
+	pthread_mutex_lock(p->left_fork);
 	print_queue(p, "has taken a fork");
 	precise_usleep(p->data->die_time);
+	pthread_mutex_unlock(p->left_fork);
 	return (1);
 }
 
@@ -40,7 +42,7 @@ void	*philo_routine(void *arg)
 	if (lonely_philo(p))
 		return (NULL);
 	if (p->id % 2 == 0)
-		precise_usleep(1);
+		precise_usleep(20);
 	while (!is_sim_done(p->data))
 	{
 		lock_forks(p);
@@ -77,14 +79,15 @@ void	philo_cleanup(t_data_philos *data)
 
 void	print_queue(t_philos *philo, const char *msg)
 {
+	pthread_mutex_lock(&philo->data->queue_lock);
 	pthread_mutex_lock(&philo->data->data_lock);
 	if (philo->data->death_signal == 1)
 	{
 		pthread_mutex_unlock(&philo->data->data_lock);
+		pthread_mutex_unlock(&philo->data->queue_lock);
 		return ;
 	}
-	pthread_mutex_lock(&philo->data->queue_lock);
+	pthread_mutex_unlock(&philo->data->data_lock);
 	printf("%lld %d %s\n", e_time(philo->data->sim_time), philo->id, msg);
 	pthread_mutex_unlock(&philo->data->queue_lock);
-	pthread_mutex_unlock(&philo->data->data_lock);
 }

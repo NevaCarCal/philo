@@ -6,7 +6,7 @@
 /*   By: ncarrera <ncarrera@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/12 14:57:02 by ncarrera          #+#    #+#             */
-/*   Updated: 2025/11/20 22:11:07 by ncarrera         ###   ########.fr       */
+/*   Updated: 2025/11/21 13:38:37 by ncarrera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,12 @@ static int	philo_dead(t_philos *philo)
 	pthread_mutex_unlock(&philo->meal_lock);
 	if (time_since_eating > philo->data->die_time)
 	{
-		pthread_mutex_lock(&philo->data->data_lock);
 		pthread_mutex_lock(&philo->data->queue_lock);
+		pthread_mutex_lock(&philo->data->data_lock);
 		philo->data->death_signal = 1;
 		printf("%lld %d died\n", e_time(philo->data->sim_time), philo->id);
-		pthread_mutex_unlock(&philo->data->queue_lock);
 		pthread_mutex_unlock(&philo->data->data_lock);
+		pthread_mutex_unlock(&philo->data->queue_lock);
 		return (1);
 	}
 	return (0);
@@ -73,6 +73,7 @@ void	*watcher_routine(void	*arg)
 
 	data = (t_data_philos *)arg;
 	wait_start(data->start_time);
+	usleep(80);
 	while (1)
 	{
 		if (philo_checker(data))
