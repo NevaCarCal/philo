@@ -49,4 +49,4 @@ reclean:
 	@$(MAKE) all -s
 	@$(MAKE) clean -s
 
-.PHONY: all clean fclean re cleanbuild
+.PHONY: all clean fclean re reclean
